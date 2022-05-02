@@ -36,13 +36,22 @@ export const App = () => {
     setIncompleteTodos([...incompleteTodos, completeTodos[index]]);
     setCompleteTodos(newTodos);
   };
+
+  const disabled = incompleteTodos.length >= 5;
   return (
     <>
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
+        disabled={disabled}
       />
+      {incompleteTodos.length >= 5 && (
+        <p style={{ color: "red", marginLeft: "18px" }}>
+          5個以上は登録できません
+        </p>
+      )}
+
       <IncompleteTodos
         incompleteTodos={incompleteTodos}
         onClickComplete={onClickComplete}
